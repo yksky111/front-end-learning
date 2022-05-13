@@ -11,7 +11,8 @@ if (leadsFromLocalStorage) {
     render(myLeads)
 }
 
-tabBtn.addEventListener("click", function(){    
+tabBtn.addEventListener("click", function(){
+    // content scripts cannot be used(Cannot read properties of undefined (reading 'query')), It's can be used when deployed on the chrome.
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
         myLeads.push(tabs[0].url)
         localStorage.setItem("myLeads", JSON.stringify(myLeads) )
